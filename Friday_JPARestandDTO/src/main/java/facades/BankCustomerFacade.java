@@ -63,7 +63,7 @@ public class BankCustomerFacade {
      public List<BankCustomer> getByName (String name) {
         EntityManager em = emf.createEntityManager();
          try{
-             TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM B<anCustomer b WHERE b.name = :name", BankCustomer.class);
+             TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM BanCustomer b WHERE b.name = :name", BankCustomer.class);
              
              query.setParameter("name", name);
              return query.getResultList();
@@ -96,11 +96,19 @@ public class BankCustomerFacade {
         
     }
     
-    public List<BankCustomerDTO> getAll(){
+    public List<BankCustomer> getAll() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM BankCustomer b", BankCustomer.class);
-        List<BankCustomer> rms = query.getResultList();
-        return BankCustomerDTO.getDtos(rms);
+        List<BankCustomer> bankCustomers = query.getResultList();
+        return bankCustomers;
+        
+    }
+    
+    public List<BankCustomerDTO> getAllDTO(){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM BankCustomer b", BankCustomer.class);
+        List<BankCustomer> bankCustomers = query.getResultList();
+        return BankCustomerDTO.getDtos(bankCustomers);
     }
     
     public static void main(String[] args) {
