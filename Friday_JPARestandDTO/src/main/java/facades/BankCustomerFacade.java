@@ -63,7 +63,7 @@ public class BankCustomerFacade {
      public List<BankCustomer> getByName (String name) {
         EntityManager em = emf.createEntityManager();
          try{
-             TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM BanCustomer b WHERE b.name = :name", BankCustomer.class);
+             TypedQuery<BankCustomer> query = em.createQuery("SELECT b FROM BankCustomer b WHERE b.name = :name", BankCustomer.class);
              
              query.setParameter("name", name);
              return query.getResultList();
